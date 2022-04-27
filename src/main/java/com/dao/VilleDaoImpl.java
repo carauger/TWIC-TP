@@ -72,7 +72,19 @@ public class VilleDaoImpl implements VilleDao{
 		
 		return villes;
 	}
-	
+	@Override
+	public void modifierVille(Ville ville) {
+		Statement stm;
+		try {
+			Connection con = JDBCConfig.openConnection();
+			stm = con.createStatement();
+			stm.executeQuery("UPDATE ville_france SET Nom_commune=" + ville.getNomCommune() + ", Code_postal="+ ville.getCodePostal() + ", Libelle_acheminement=" + ville.getLibelleAcheminement()+", Ligne_5=" + ville.getLigne5() + ", Latitude=" + ville.getLatitude() + ", Longitude="+ ville.getLongitude() + " WHERE Code_postal =" + ville.getCodePostal() + ";");
+			con= JDBCConfig.closeConnection();
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
 
 	@Override
 	public void ajouterVille(Ville ville) {
@@ -82,6 +94,22 @@ public class VilleDaoImpl implements VilleDao{
 			Connection con = JDBCConfig.openConnection();
 			stm = con.createStatement();
 			stm.executeQuery("INSERT INTO ville_france VALUES("+ ville.getCodeCommuneINSEE() + ","+ ville.getNomCommune() + ","	+ ville.getCodePostal() + ","+ ville.getLibelleAcheminement() + ","+ ville.getLigne5() + ","+ ville.getLatitude() + ","	+ ville.getLongitude() + ");");
+			
+			con = JDBCConfig.closeConnection();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void supprimerVille(Ville ville) {
+		Statement stm;
+		
+		try {
+			Connection con = JDBCConfig.openConnection();
+			stm = con.createStatement();
+			stm.executeQuery("DELETE FROM ville_france WHERE Code_postal = "+ ville.getCodePostal() +";");
 			
 			con = JDBCConfig.closeConnection();
 
