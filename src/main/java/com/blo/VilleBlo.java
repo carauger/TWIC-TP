@@ -6,7 +6,9 @@ import com.dto.Ville;
 
 public interface VilleBlo {
 
-	public ArrayList<Ville> listerVilles(String Code_postal);
+	public ArrayList<Ville> listerVillesParCodePostal(String Code_postal);
+	
+	public ArrayList<Ville> listerVilles();
 
 	void ajouterVille(Ville ville);
 	

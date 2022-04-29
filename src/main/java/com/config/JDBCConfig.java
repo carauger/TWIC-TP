@@ -11,8 +11,8 @@ public class JDBCConfig {
 	
 	public static Connection openConnection() {
 		try {
-            Class.forName("com.mysql.jdbc.Driver");            
-            con = DriverManager.getConnection("jdbc:mysql://localhost:3600/courstwic", "root", "network");
+            Class.forName("com.mysql.cj.jdbc.Driver");            
+            con = DriverManager.getConnection("jdbc:mysql://localhost:3306/courstwic?zeroDateTimeBehavior=CONVERT_TO_NULL&serverTimezone=UTC", "root", "network");
             System.out.println("Connexion à la base réussie !");  
         }catch(Exception e) {
             e.printStackTrace();

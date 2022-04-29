@@ -14,7 +14,6 @@ import com.dto.Ville;
 
 @RestController
 public class VilleController {
-	
 
 	@Autowired
 	VilleBlo villeBlo;
@@ -30,12 +29,19 @@ public class VilleController {
 	@RequestMapping(value = "/VilleAfficher", method=RequestMethod.GET)
 	@ResponseBody
 	public ArrayList<Ville> villeGet(@RequestParam(required=false, value="codePostal")String codePostal) {
-		return villeBlo.listerVilles(codePostal);
+		ArrayList<Ville> liste = new ArrayList<Ville>();
+		if (codePostal == null) {
+			liste = villeBlo.listerVilles();
+		} else {
+			liste = villeBlo.listerVillesParCodePostal(codePostal);
+		}
+		return liste;
 	}
+	
 	//POST
 	@RequestMapping(value = "/VilleAjout", method=RequestMethod.POST)
 	@ResponseBody
-	public void villePost(@RequestParam(required = false, value = "ville") Ville villeAAjouter) {
+	public void villePost(@RequestParam(required = true, value = "villeAAjouter") Ville villeAAjouter) {
 		villeBlo.ajouterVille(villeAAjouter);
 	}
 	
@@ -49,7 +55,7 @@ public class VilleController {
 	//DELETE
 	@RequestMapping(value = "/VilleSupr", method=RequestMethod.DELETE)
 	@ResponseBody
-	public void villeDelete(@RequestParam Ville villeASupprimer)  {
+	public void villeDelete(@RequestParam(required=true, value="villeASupprimer") Ville villeASupprimer)  {
 		villeBlo.supprimerVille(villeASupprimer);
 	}
 	

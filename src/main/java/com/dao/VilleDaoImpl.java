@@ -30,10 +30,13 @@ public class VilleDaoImpl implements VilleDao{
 			
 			while(result.next()) {
 				Ville ville = new Ville();
-				ville.setCodeCommuneINSEE(result.getString("Code_commune_INSEE"));
 				ville.setNomCommune(result.getString("Nom_commune"));
 				ville.setCode_postal(result.getString("Code_postal"));
-								
+				ville.setCodeCommuneINSEE(result.getString("Code_commune_INSEE"));
+				ville.setLibelleAcheminement(result.getString("Libelle_acheminement"));
+				ville.setLatitude(result.getString("Latitude"));
+				ville.setLongitude(result.getString("Longitude"));
+				ville.setLigne5(result.getString("Ligne_5"));
 				villes.add(ville);
 			}
 			
@@ -61,6 +64,12 @@ public class VilleDaoImpl implements VilleDao{
 			while (result.next()) {
 				Ville ville = new Ville();
 				ville.setNomCommune(result.getString("Nom_commune"));
+				ville.setCode_postal(result.getString("Code_postal"));
+				ville.setCodeCommuneINSEE(result.getString("Code_commune_INSEE"));
+				ville.setLibelleAcheminement(result.getString("Libelle_acheminement"));
+				ville.setLatitude(result.getString("Latitude"));
+				ville.setLongitude(result.getString("Longitude"));
+				ville.setLigne5(result.getString("Ligne_5"));
 				villes.add(ville);
 			}
 			
