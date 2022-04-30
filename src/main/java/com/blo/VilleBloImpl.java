@@ -26,8 +26,8 @@ public class VilleBloImpl implements VilleBlo {
 		villeDao.ajouterVille(ville);
 	}
 
-	public void supprimerVille(Ville ville) {
-		villeDao.supprimerVille(ville);
+	public void supprimerVille(String code) {
+		villeDao.supprimerVille(code);
 	}
 	
 	public void modifierVille(Ville ville) {

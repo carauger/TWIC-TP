@@ -12,7 +12,7 @@ public interface VilleBlo {
 
 	void ajouterVille(Ville ville);
 	
-	void supprimerVille(Ville ville);
+	void supprimerVille(String code);
 	
 	void modifierVille(Ville ville);
 

@@ -55,8 +55,8 @@ public class VilleController {
 	//DELETE
 	@RequestMapping(value = "/VilleSupr", method=RequestMethod.DELETE)
 	@ResponseBody
-	public void villeDelete(@RequestParam(required=true, value="villeASupprimer") Ville villeASupprimer)  {
-		villeBlo.supprimerVille(villeASupprimer);
+	public void villeDelete(@RequestParam(required=true, value="codeCommune")String codeCommune)  {
+		villeBlo.supprimerVille(codeCommune);
 	}
 	
 }
