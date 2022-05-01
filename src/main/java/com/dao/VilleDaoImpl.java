@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.stereotype.Repository;
 
@@ -16,12 +17,12 @@ public class VilleDaoImpl implements VilleDao{
 	
 
 	@Override
-	public ArrayList<Ville> listerVilleParCodePostal(String codePostal) {
+	public List<Ville> listerVilleParCodePostal(String codePostal) {
 		
 		Statement statement;
 		ResultSet result;
 		
-		ArrayList<Ville> villes = new ArrayList<Ville>();
+		List<Ville> villes = new ArrayList<>();
 		
 		try {
 			Connection con = JDBCConfig.openConnection();
@@ -50,11 +51,11 @@ public class VilleDaoImpl implements VilleDao{
 	}
 
 	@Override
-	public ArrayList<Ville> listerVille() {
+	public List<Ville> listerVille() {
 		Statement statement;
 		ResultSet result;
 		
-		ArrayList<Ville> villes = new ArrayList<Ville>();
+		List<Ville> villes = new ArrayList<>();
 		
 		try {
 			Connection con = JDBCConfig.openConnection();
@@ -83,12 +84,12 @@ public class VilleDaoImpl implements VilleDao{
 	}
 	
 	@Override
-	public void modifierVille(Ville ville) {
+	public void modifierVille(Ville ville, String code) {
 		Statement stm;
 		try {
 			Connection con = JDBCConfig.openConnection();
 			stm = con.createStatement();
-			stm.executeQuery("UPDATE ville_france SET Nom_commune=" + ville.getNomCommune() + ", Code_postal="+ ville.getCodePostal() + ", Libelle_acheminement=" + ville.getLibelleAcheminement()+", Ligne_5=" + ville.getLigne5() + ", Latitude=" + ville.getLatitude() + ", Longitude="+ ville.getLongitude() + " WHERE Code_commune_INSEE =" + ville.getCodeCommuneINSEE() + ";");
+			stm.executeQuery("UPDATE ville_france SET Nom_commune=" + ville.getNomCommune() + ", Code_postal="+ ville.getCodePostal() + ", Libelle_acheminement=" + ville.getLibelleAcheminement()+", Ligne_5=" + ville.getLigne5() + ", Latitude=" + ville.getLatitude() + ", Longitude="+ ville.getLongitude() + " WHERE Code_commune_INSEE =" + code + ";");
 			con= JDBCConfig.closeConnection();
 		}
 		catch(SQLException e) {

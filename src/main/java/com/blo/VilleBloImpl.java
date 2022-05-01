@@ -1,6 +1,7 @@
 package com.blo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,11 +15,11 @@ public class VilleBloImpl implements VilleBlo {
 	@Autowired
 	private VilleDao villeDao;
 	
-	public ArrayList<Ville> listerVilles(){
+	public List<Ville> listerVilles(){
 		return villeDao.listerVille();
 	}
 
-	public ArrayList<Ville> listerVillesParCodePostal(String codePostal) {
+	public List<Ville> listerVillesParCodePostal(String codePostal) {
 		return villeDao.listerVilleParCodePostal(codePostal);
 	}
 
@@ -30,7 +31,7 @@ public class VilleBloImpl implements VilleBlo {
 		villeDao.supprimerVille(code);
 	}
 	
-	public void modifierVille(Ville ville) {
-		villeDao.modifierVille(ville);
+	public void modifierVille(Ville ville, String code) {
+		villeDao.modifierVille(ville, code);
 	}
 }
